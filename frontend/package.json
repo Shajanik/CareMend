@@ -1,0 +1,43 @@
+{
+  "name": "caremend",
+  "description": "Comprehensive bone health management platform with ML-driven risk assessment, CareConnect AI-assisted healthcare guidance, and personalized health recommendations",
+  "version": "1.0.0",
+  "type": "module",
+  "keywords": [
+    "bone health",
+    "osteoporosis",
+    "healthcare",
+    "machine learning",
+    "CareConnect",
+    "health assessment",
+    "personalized medicine"
+  ],
+  "author": "CareMend Development Team",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@google/genai": "^1.42.0",
+    "@google/generative-ai": "^0.24.1",
+    "@tailwindcss/vite": "^4.2.2",
+    "@types/react-router-dom": "^5.3.3",
+    "firebase": "^12.14.0",
+    "framer-motion": "^12.34.3",
+    "lucide-react": "^0.575.0",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "react-markdown": "^10.1.0",
+    "react-router-dom": "^7.14.0",
+    "tailwindcss": "^4.2.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "@vitejs/plugin-react": "^5.2.0",
+    "typescript": "~5.8.2",
+    "vite": "^6.2.0"
+  }
+}

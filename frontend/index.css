@@ -1,0 +1,826 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   CAREMEND TYPOGRAPHY SYSTEM
+   Single source of truth for all text styles.
+   Font: Montserrat (loaded in index.html)
+   Scale: 4 levels — heading, subheading, body, small
+   Colors: Maroon headings, dark-gray body, mid-gray labels
+═══════════════════════════════════════════════════════════ */
+
+/* ── Base reset ── */
+html, body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+  background-color: #ffffff;
+  color: #374151;           /* dark gray — default body text */
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* ── Force Montserrat everywhere — override any inline fontFamily ── */
+*, *::before, *::after {
+  font-family: inherit;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   TYPOGRAPHY UTILITY CLASSES
+   Use these instead of ad-hoc Tailwind text-* combos.
+═══════════════════════════════════════════════════════════ */
+
+/* H1 — Page titles (e.g. "My Profile", "Dashboard") */
+.cm-h1 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #800000;
+}
+
+/* H2 — Section titles (e.g. "Key Features", "How It Works") */
+.cm-h2 {
+  font-size: clamp(1.35rem, 3vw, 1.875rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: #800000;
+}
+
+/* H3 — Card titles, sub-section headings */
+.cm-h3 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0;
+  color: #1f2937;
+}
+
+/* Subtitle — supporting text under headings */
+.cm-subtitle {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.6;
+  color: #6b7280;
+}
+
+/* Body — standard paragraph text */
+.cm-body {
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.7;
+  color: #374151;
+}
+
+/* Small — labels, hints, captions, badges */
+.cm-small {
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: #9ca3af;
+}
+
+/* Label — form field labels, uppercase tags */
+.cm-label {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #9ca3af;
+}
+
+/* Brand — CAREMEND wordmark */
+.cm-brand {
+  font-size: 1.25rem;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #800000;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   GLOBAL ELEMENT DEFAULTS
+═══════════════════════════════════════════════════════════ */
+
+h1 { font-size: clamp(1.75rem, 4vw, 2.5rem);  font-weight: 900; line-height: 1.1; letter-spacing: -0.02em; color: #800000; }
+h2 { font-size: clamp(1.35rem, 3vw, 1.875rem); font-weight: 800; line-height: 1.2; letter-spacing: -0.01em; color: #800000; }
+h3 { font-size: 1.125rem; font-weight: 700; line-height: 1.3; color: #1f2937; }
+h4 { font-size: 1rem;     font-weight: 700; line-height: 1.4; color: #1f2937; }
+p  { font-size: 0.9375rem; font-weight: 400; line-height: 1.7; color: #374151; margin: 0; }
+
+::placeholder {
+  color: #9ca3af;
+  font-weight: 600;
+  opacity: 1;
+}
+
+input, textarea, select {
+  font-family: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.9375rem;
+  color: #374151;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   CAREMEND ICON & BUTTON SYSTEM
+   Single source of truth for all interactive elements.
+   Tokens: 3 icon sizes, 2 button variants, 1 icon-button
+═══════════════════════════════════════════════════════════ */
+
+/* ── Icon sizes ── */
+/* .icon-sm  → 16px  — inline labels, badges, breadcrumbs   */
+/* .icon-md  → 20px  — buttons, nav items, list rows        */
+/* .icon-lg  → 28px  — feature cards, section highlights    */
+/* ALL ICONS: perfectly upright, flat, no transforms */
+.icon-sm { 
+  font-size: 16px; 
+  line-height: 1; 
+  display: inline-flex; 
+  align-items: center; 
+  justify-content: center;
+  transform: none !important;
+  rotate: 0deg !important;
+  perspective: none !important;
+}
+
+.icon-md { 
+  font-size: 20px; 
+  line-height: 1; 
+  display: inline-flex; 
+  align-items: center; 
+  justify-content: center;
+  transform: none !important;
+  rotate: 0deg !important;
+  perspective: none !important;
+}
+
+.icon-lg { 
+  font-size: 28px; 
+  line-height: 1; 
+  display: inline-flex; 
+  align-items: center; 
+  justify-content: center;
+  transform: none !important;
+  rotate: 0deg !important;
+  perspective: none !important;
+}
+
+/* ── Icon container boxes ── */
+/* Wrap an icon in one of these for consistent framed icons */
+/* ALL ICONS: perfectly upright, flat, no transforms */
+.icon-box-sm {
+  width: 32px; 
+  height: 32px; 
+  min-width: 32px;
+  border-radius: 8px;
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  background: #fdf0f0; 
+  color: #800000;
+  transform: none !important;
+  rotate: 0deg !important;
+  perspective: none !important;
+}
+
+.icon-box-md {
+  width: 44px; 
+  height: 44px; 
+  min-width: 44px;
+  border-radius: 12px;
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  background: #fdf0f0; 
+  color: #800000;
+  transform: none !important;
+  rotate: 0deg !important;
+  perspective: none !important;
+}
+
+.icon-box-lg {
+  width: 56px; 
+  height: 56px; 
+  min-width: 56px;
+  border-radius: 16px;
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  background: #fdf0f0; 
+  color: #800000;
+  transform: none !important;
+  rotate: 0deg !important;
+  perspective: none !important;
+}
+
+/* ── Primary button ── */
+/* CareMend red bg, white text, 44px height, rounded-xl */
+/* ALL ICONS: perfectly upright, flat, no transforms */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 24px;
+  border-radius: 12px;
+  background: #a32626;
+  color: #FFFFFF;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: opacity 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 14px rgba(163, 38, 38, 0.28);
+  white-space: nowrap;
+  transform: none !important;
+  rotate: 0deg !important;
+  perspective: none !important;
+}
+
+.btn-primary:hover { 
+  opacity: 0.9; 
+  box-shadow: 0 8px 20px rgba(163, 38, 38, 0.35);
+}
+
+.btn-primary:active { 
+  opacity: 0.85;
+}
+
+.btn-primary:disabled { 
+  opacity: 0.45; 
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+/* Ensure icons inside primary button don't get affected */
+.btn-primary i,
+.btn-primary svg {
+  transform: none !important;
+  rotate: 0deg !important;
+}
+
+/* Full-width variant */
+.btn-primary-full { width: 100%; }
+
+/* ── Secondary button ── */
+/* White bg, red border + text — matches Start Assessment style */
+/* ALL ICONS: perfectly upright, flat, no transforms */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 24px;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #a32626;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 2px solid #a32626;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  white-space: nowrap;
+  transform: none !important;
+  rotate: 0deg !important;
+  perspective: none !important;
+}
+
+.btn-secondary:hover { 
+  background: #fdf2f2;
+}
+
+.btn-secondary:active { 
+  background: #f5d5d5;
+}
+
+.btn-secondary:disabled { 
+  opacity: 0.45; 
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Ensure icons inside secondary button don't get affected */
+.btn-secondary i,
+.btn-secondary svg {
+  transform: none !important;
+  rotate: 0deg !important;
+}
+
+/* ── Icon button (square, no label) ── */
+/* ALL ICONS: perfectly upright, flat, no transforms */
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px; 
+  height: 44px; 
+  min-width: 44px;
+  border-radius: 12px;
+  background: #fdf0f0;
+  color: #800000;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  transform: none !important;
+  rotate: 0deg !important;
+  perspective: none !important;
+}
+
+.btn-icon:hover { 
+  background: #f5d5d5;
+}
+
+.btn-icon:active { 
+  background: #efc9c9;
+}
+
+/* Ensure icons inside buttons don't get affected by button transforms */
+.btn-icon i,
+.btn-icon svg {
+  transform: none !important;
+  rotate: 0deg !important;
+}
+
+/* ── Button text color overrides for visibility ── */
+/* These have higher specificity to ensure text is visible on colored backgrounds */
+.btn-primary.bg-green-600,
+.btn-primary.bg-green-700,
+.btn-secondary.bg-green-600,
+.btn-secondary.bg-green-700 {
+  color: #ffffff !important;
+  background: #16a34a !important;
+}
+
+.btn-primary.bg-green-600:hover,
+.btn-secondary.bg-green-600:hover,
+.btn-primary.bg-green-700:hover,
+.btn-secondary.bg-green-700:hover {
+  background: #15803d !important;
+  color: #ffffff !important;
+}
+
+.btn-primary.bg-blue-600,
+.btn-primary.bg-blue-700,
+.btn-secondary.bg-blue-600,
+.btn-secondary.bg-blue-700 {
+  color: #ffffff !important;
+  background: #a32626 !important;
+}
+
+.btn-primary.bg-blue-600:hover,
+.btn-secondary.bg-blue-600:hover,
+.btn-primary.bg-blue-700:hover,
+.btn-secondary.bg-blue-700:hover {
+  background: #8b1f1f !important;
+  color: #ffffff !important;
+}
+
+/* Additional safety rules for any button with these background classes */
+button.bg-green-600,
+button.bg-green-700,
+.bg-green-600,
+.bg-green-700 {
+  color: #ffffff !important;
+}
+
+button.bg-blue-600,
+button.bg-blue-700,
+.bg-blue-600,
+.bg-blue-700 {
+  color: #ffffff !important;
+}
+
+/* Ensure text-white class always works */
+.text-white {
+  color: #ffffff !important;
+}
+
+/* ── Inline icon + text alignment helper ── */
+.icon-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE OVERRIDES — kept here for legacy, canonical
+   version is in the STANDARD HEADER PATTERN block below
+═══════════════════════════════════════════════════════════ */
+/* (mobile overrides are defined in the appended block below) */
+
+/* Dashboard layout improvements */
+.dashboard-container {
+  min-height: 100vh;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+.dashboard-section {
+  margin-bottom: 4rem;
+}
+
+.dashboard-section:last-child {
+  margin-bottom: 6rem;
+  padding-bottom: 2rem;
+}
+
+/* Ensure chatbot doesn't interfere with content */
+.floating-chatbot {
+  position: fixed;
+  z-index: 1000;
+  pointer-events: auto;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   STANDARD HEADER PATTERN
+   Use .cm-header on every page's <header> for consistency
+═══════════════════════════════════════════════════════════ */
+.cm-header {
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(128, 0, 0, 0.08);
+}
+
+.cm-header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+/* ── Standard back button — used in every sub-page header ── */
+/* Replaces ad-hoc w-9/w-10 rounded-xl buttons across views  */
+/* ALL ICONS: perfectly upright, flat, no transforms */
+.btn-back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px; 
+  height: 40px; 
+  min-width: 40px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #800000;
+  border: 1px solid rgba(163, 38, 38, 0.2);
+  cursor: pointer;
+  transition: background 0.2s ease;
+  flex-shrink: 0;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transform: none !important;
+  rotate: 0deg !important;
+  perspective: none !important;
+}
+
+.btn-back:hover { 
+  background: #fdf0f0;
+}
+
+.btn-back:active { 
+  background: #efc9c9;
+}
+
+/* Ensure icons inside back button don't get affected by button transforms */
+.btn-back i,
+.btn-back svg {
+  transform: none !important;
+  rotate: 0deg !important;
+}
+
+/* ── Icon sizes for SVG/FA icons inside buttons & cards ── */
+/* Enforce consistent sizing — do NOT use text-xl / text-2xl etc. */
+/* ALL ICONS: perfectly upright, flat, no transforms */
+.icon-sm { 
+  width: 16px; 
+  height: 16px; 
+  font-size: 16px; 
+  line-height: 1; 
+  display: inline-flex; 
+  align-items: center; 
+  justify-content: center; 
+  flex-shrink: 0;
+  transform: none !important;
+  rotate: 0deg !important;
+  perspective: none !important;
+}
+
+.icon-md { 
+  width: 20px; 
+  height: 20px; 
+  font-size: 20px; 
+  line-height: 1; 
+  display: inline-flex; 
+  align-items: center; 
+  justify-content: center; 
+  flex-shrink: 0;
+  transform: none !important;
+  rotate: 0deg !important;
+  perspective: none !important;
+}
+
+.icon-lg { 
+  width: 28px; 
+  height: 28px; 
+  font-size: 28px; 
+  line-height: 1; 
+  display: inline-flex; 
+  align-items: center; 
+  justify-content: center; 
+  flex-shrink: 0;
+  transform: none !important;
+  rotate: 0deg !important;
+  perspective: none !important;
+}
+
+/* ── Service card icon container — 56×56 framed icon ── */
+/* ALL ICONS: perfectly upright, flat, no transforms */
+.card-icon-box {
+  width: 56px; 
+  height: 56px; 
+  min-width: 56px;
+  border-radius: 16px;
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  background: #fdf0f0;
+  color: #800000;
+  border: 1.5px solid rgba(128, 0, 0, 0.12);
+  flex-shrink: 0;
+  transform: none !important;
+  rotate: 0deg !important;
+  perspective: none !important;
+}
+
+/* Dark variant — used on maroon-background cards */
+.card-icon-box-dark {
+  width: 56px; 
+  height: 56px; 
+  min-width: 56px;
+  border-radius: 16px;
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+  border: 1.5px solid rgba(255, 255, 255, 0.28);
+  flex-shrink: 0;
+  transform: none !important;
+  rotate: 0deg !important;
+  perspective: none !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   COMPREHENSIVE ICON FIXES - ALL ICONS PERFECTLY UPRIGHT
+   Ensures all icons across the website are:
+   - Perfectly upright (no rotation)
+   - Flat (no 3D transforms)
+   - Properly aligned (centered, balanced)
+   - Consistent sizing
+═══════════════════════════════════════════════════════════ */
+
+/* Global icon reset — remove ALL transforms */
+i, .fas, [class^="fa-"], svg.icon {
+  transform: none !important;
+  rotate: 0deg !important;
+  perspective: none !important;
+  skew: 0deg !important;
+  filter: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 1 !important;
+}
+
+/* FontAwesome icons specifically */
+.fas {
+  transform: none !important;
+  rotate: 0deg !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: inherit;
+  line-height: 1;
+}
+
+/* Remove all animation jitter and transforms from icons */
+i[class*="fa-"] {
+  transform: none !important;
+  rotate: 0deg !important;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* SVG icons — keep flat, no 3D effects */
+svg {
+  transform: none !important;
+  perspective: none !important;
+  backface-visibility: visible !important;
+}
+
+/* Fix SVG within containers */
+.icon-box-sm svg,
+.icon-box-md svg,
+.icon-box-lg svg,
+.card-icon-box svg,
+.card-icon-box-dark svg,
+.btn-icon svg,
+.btn-back svg {
+  transform: none !important;
+  rotate: 0deg !important;
+  perspective: none !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Remove perspective from any parent containers of icons */
+.icon-box-sm,
+.icon-box-md,
+.icon-box-lg,
+.card-icon-box,
+.card-icon-box-dark,
+.btn-icon,
+.btn-back,
+.btn-primary,
+.btn-secondary,
+.icon-row {
+  perspective: none !important;
+  transform-style: initial !important;
+}
+
+/* Fix navbar icons */
+nav i,
+header i {
+  transform: none !important;
+  rotate: 0deg !important;
+}
+
+/* Fix sidebar icons */
+aside i,
+.sidebar i {
+  transform: none !important;
+  rotate: 0deg !important;
+}
+
+/* Fix dashboard icons */
+.dashboard-container i,
+.dashboard-section i {
+  transform: none !important;
+  rotate: 0deg !important;
+}
+
+/* Fix footer icons */
+footer i {
+  transform: none !important;
+  rotate: 0deg !important;
+}
+
+/* Fix floating action button icons */
+.floating-action-button i,
+.fab i {
+  transform: none !important;
+  rotate: 0deg !important;
+}
+
+/* Fix form icons */
+form i,
+.form-icon i {
+  transform: none !important;
+  rotate: 0deg !important;
+}
+
+/* Fix card icons */
+.card i,
+.card-icon i {
+  transform: none !important;
+  rotate: 0deg !important;
+}
+
+/* Fix feature icons */
+.feature-icon i,
+[class*="feature"] i {
+  transform: none !important;
+  rotate: 0deg !important;
+}
+
+/* Fix social icons */
+.social-icon i,
+[class*="social"] i {
+  transform: none !important;
+  rotate: 0deg !important;
+}
+
+/* Fix tooltip icons */
+.tooltip i,
+[role="tooltip"] i {
+  transform: none !important;
+  rotate: 0deg !important;
+}
+
+/* Fix modal icons */
+.modal i,
+dialog i {
+  transform: none !important;
+  rotate: 0deg !important;
+}
+
+/* Remove animation jitter - disable all problematic animations on icons */
+i:hover,
+svg:hover {
+  animation: none !important;
+}
+
+/* Ensure text alignment with icons */
+.icon-row,
+.flex.items-center {
+  align-items: center !important;
+  vertical-align: middle !important;
+}
+
+/* Fix Tailwind transform classes that might affect icons */
+.hover\:scale-105:hover {
+  /* This should not apply to icons inside */
+}
+
+/* Disable perspective for circular/spin animations */
+@keyframes spin {
+  from {
+    transform: rotate(0deg) !important;
+  }
+  to {
+    transform: rotate(360deg) !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE ICON ADJUSTMENTS (mobile)
+═══════════════════════════════════════════════════════════ */
+@media (max-width: 640px) {
+  .icon-lg { 
+    width: 24px; 
+    height: 24px; 
+    font-size: 24px;
+    transform: none !important;
+    rotate: 0deg !important;
+  }
+
+  .icon-box-lg, 
+  .card-icon-box, 
+  .card-icon-box-dark { 
+    width: 48px; 
+    height: 48px; 
+    border-radius: 14px;
+    transform: none !important;
+    rotate: 0deg !important;
+  }
+
+  /* Ensure mobile icons stay upright */
+  i,
+  .fas,
+  svg {
+    transform: none !important;
+    rotate: 0deg !important;
+  }
+}
