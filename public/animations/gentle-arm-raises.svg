@@ -1,0 +1,67 @@
+<svg width="200" height="300" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Gentle Arm Raises Animation -->
+  <defs>
+    <style>
+      .figure { fill: #0891B2; stroke: #0E7490; stroke-width: 2; }
+      .arms { animation: armRaise 3s ease-in-out infinite; }
+      @keyframes armRaise {
+        0%, 100% { transform: rotate(0deg); }
+        50% { transform: rotate(90deg); }
+      }
+    </style>
+  </defs>
+  
+  <!-- Ground line -->
+  <line x1="50" y1="280" x2="150" y2="280" stroke="#8B5CF6" stroke-width="3"/>
+  
+  <!-- Figure doing arm raises -->
+  <g>
+    <!-- Head -->
+    <circle cx="100" cy="50" r="15" class="figure"/>
+    
+    <!-- Torso -->
+    <rect x="90" y="65" width="20" height="60" rx="10" class="figure"/>
+    
+    <!-- Arms (animated raising) -->
+    <g class="arms" transform-origin="83 75">
+      <rect x="75" y="75" width="8" height="40" rx="4" class="figure"/>
+    </g>
+    <g class="arms" transform-origin="117 75">
+      <rect x="117" y="75" width="8" height="40" rx="4" class="figure"/>
+    </g>
+    
+    <!-- Legs -->
+    <rect x="85" y="125" width="12" height="50" rx="6" class="figure"/>
+    <rect x="103" y="125" width="12" height="50" rx="6" class="figure"/>
+    
+    <!-- Feet -->
+    <ellipse cx="91" cy="185" rx="8" ry="4" class="figure"/>
+    <ellipse cx="109" cy="185" rx="8" ry="4" class="figure"/>
+  </g>
+  
+  <!-- Movement arrows -->
+  <path d="M 65 85 Q 55 75 45 65" stroke="#10B981" stroke-width="2" fill="none" marker-end="url(#greenArrow)">
+    <animate attributeName="opacity" values="0.5;1;0.5" dur="1.5s" repeatCount="indefinite"/>
+  </path>
+  <path d="M 135 85 Q 145 75 155 65" stroke="#10B981" stroke-width="2" fill="none" marker-end="url(#greenArrow)">
+    <animate attributeName="opacity" values="0.5;1;0.5" dur="1.5s" repeatCount="indefinite"/>
+  </path>
+  
+  <!-- Arrow marker -->
+  <defs>
+    <marker id="greenArrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#10B981"/>
+    </marker>
+  </defs>
+  
+  <!-- Instructions -->
+  <text x="100" y="220" text-anchor="middle" font-family="Arial" font-size="12" fill="#374151">
+    Stand with arms at sides
+  </text>
+  <text x="100" y="235" text-anchor="middle" font-family="Arial" font-size="12" fill="#374151">
+    Slowly raise to shoulder height
+  </text>
+  <text x="100" y="250" text-anchor="middle" font-family="Arial" font-size="12" fill="#374151">
+    Hold 3 seconds, then lower
+  </text>
+</svg>

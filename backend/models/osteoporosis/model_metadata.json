@@ -1,0 +1,320 @@
+{
+  "model_version": "0.1.0-demo",
+  "status": "experimental_demonstration",
+  "trained_at_utc": "2026-10-19T06:45:54+00:00",
+  "model_type": "logreg",
+  "model_class": "LogisticRegression",
+  "selection_rule": "(deployed model may be overridden, see selection_details.override) highest mean out-of-fold balanced accuracy on the train split (all_features scenario), but Logistic Regression is kept unless the winner beats it by more than sampling noise (95% paired-bootstrap CI of the difference excludes 0)",
+  "selection_details": {
+    "candidates_mean_oof_balanced_accuracy": {
+      "logreg": 0.829765325670498,
+      "random_forest": 0.8647809215050593,
+      "xgboost": 0.9144010953924748
+    },
+    "best_by_raw_score": "xgboost",
+    "paired_bootstrap": {
+      "vs": "logreg",
+      "diff_best_minus_logreg": 0.08707633362805778,
+      "ci95": [
+        0.0702811088589875,
+        0.1046667189821603
+      ]
+    },
+    "rule_choice": "xgboost",
+    "override": {
+      "deployed": "logreg",
+      "rule_choice": "xgboost",
+      "age_only_balanced_accuracy_of_rule_choice": 0.9214559386973178,
+      "reason": "The statistical winner's advantage comes from fitting the step-like age pattern in the labels (an age-only model of the same type scores about the same as the all-feature model, and every model is at chance without age). That makes it a better reproducer of a suspect labelling artifact, not a better clinical predictor. The winner also gives no per-answer explanation and adds a heavy runtime dependency. The simpler, explainable Logistic Regression is deployed; use --deploy-model auto to deploy the rule's choice."
+    },
+    "chosen": "logreg"
+  },
+  "library_versions": {
+    "python": "3.13.16",
+    "scikit_learn": "1.8.0",
+    "pandas": "3.0.6",
+    "numpy": "2.5.4",
+    "joblib": "1.6.0"
+  },
+  "random_seed": 42,
+  "dataset": {
+    "file": "data/osteoporosis.csv",
+    "sha256": "8ccd5b3f6de51d054fea87af8946e1891651ee1edc997c2dc370f42e780209ac",
+    "n_rows": 1958,
+    "n_rows_after_cleaning": 1954,
+    "n_train": 1563,
+    "n_test": 391,
+    "positive_rate": 0.5,
+    "age_min": 18,
+    "age_max": 90,
+    "age_label_pattern_detected": true,
+    "age_all_positive_from": 39
+  },
+  "deployed_model_fit_rows": 1563,
+  "refit_on_full_data": false,
+  "feature_names": [
+    "age",
+    "gender",
+    "family_history",
+    "body_weight",
+    "calcium_intake",
+    "vitamin_d_intake",
+    "physical_activity",
+    "smoking",
+    "prior_fractures"
+  ],
+  "features": [
+    {
+      "name": "age",
+      "csv": "Age",
+      "kind": "numeric",
+      "required": true,
+      "min": 18,
+      "max": 100,
+      "description": "Age in years (training data covers 18-89)."
+    },
+    {
+      "name": "gender",
+      "csv": "Gender",
+      "kind": "categorical",
+      "required": true,
+      "allowed": [
+        "female",
+        "male"
+      ],
+      "description": "Sex as recorded in the dataset (female/male)."
+    },
+    {
+      "name": "family_history",
+      "csv": "Family History",
+      "kind": "categorical",
+      "required": true,
+      "allowed": [
+        "no",
+        "yes"
+      ],
+      "description": "Family history of osteoporosis."
+    },
+    {
+      "name": "body_weight",
+      "csv": "Body Weight",
+      "kind": "categorical",
+      "required": false,
+      "allowed": [
+        "normal",
+        "underweight"
+      ],
+      "description": "Derived from BMI by the frontend: underweight if BMI < 18.5, else normal."
+    },
+    {
+      "name": "calcium_intake",
+      "csv": "Calcium Intake",
+      "kind": "categorical",
+      "required": false,
+      "allowed": [
+        "adequate",
+        "low"
+      ],
+      "description": "Self-reported dietary calcium intake."
+    },
+    {
+      "name": "vitamin_d_intake",
+      "csv": "Vitamin D Intake",
+      "kind": "categorical",
+      "required": false,
+      "allowed": [
+        "sufficient",
+        "insufficient"
+      ],
+      "description": "Self-reported vitamin D intake / status."
+    },
+    {
+      "name": "physical_activity",
+      "csv": "Physical Activity",
+      "kind": "categorical",
+      "required": false,
+      "allowed": [
+        "active",
+        "sedentary"
+      ],
+      "description": "Habitual physical activity."
+    },
+    {
+      "name": "smoking",
+      "csv": "Smoking",
+      "kind": "categorical",
+      "required": false,
+      "allowed": [
+        "no",
+        "yes"
+      ],
+      "description": "Current smoker."
+    },
+    {
+      "name": "prior_fractures",
+      "csv": "Prior Fractures",
+      "kind": "categorical",
+      "required": true,
+      "allowed": [
+        "no",
+        "yes"
+      ],
+      "description": "Any previous fracture."
+    }
+  ],
+  "excluded_columns": {
+    "Id": "identifier, not a feature",
+    "Hormonal Changes": "not collected by CareMend; inconsistent with Gender in the data",
+    "Race/Ethnicity": "not collected by CareMend; no Indian category in the dataset",
+    "Alcohol Consumption": "valid (\"None\"/\"Moderate\") but only two levels, not a CareMend question in this form; ablation shows no reliable gain (see evaluation report)",
+    "Medications": "valid (\"None\"/\"Corticosteroids\"); ablation shows no reliable gain; CareMend does not ask for a medication list",
+    "Medical Conditions": "valid (None/Rheumatoid Arthritis/Hyperthyroidism); not collected by CareMend; ablation shows no reliable gain"
+  },
+  "imputation_defaults_for_unknown_optional_fields": {
+    "gender": "male",
+    "family_history": "no",
+    "body_weight": "normal",
+    "calcium_intake": "low",
+    "vitamin_d_intake": "sufficient",
+    "physical_activity": "active",
+    "smoking": "yes",
+    "prior_fractures": "yes"
+  },
+  "decision_threshold": 0.1991,
+  "decision_threshold_rule": "highest specificity with train out-of-fold sensitivity >= 90%",
+  "score_semantics": "raw model score in [0,1] = predict_proba of the positive class; UNCALIBRATED",
+  "calibrated": false,
+  "calibration_note": "Not justified: tiny sample and unverified labels. The score is only used to rank and to apply the decision threshold.",
+  "risk_categories": {
+    "LOW": "score < decision_threshold",
+    "HIGH": "score >= decision_threshold",
+    "MEDIUM": "not produced \u2014 a binary, uncalibrated model gives no defensible middle band"
+  },
+  "metrics": {
+    "train_cv_repeated_stratified": {
+      "scenario": "all_features",
+      "model": "logreg",
+      "repeats": 20,
+      "folds": 5,
+      "threshold": 0.5,
+      "accuracy": {
+        "mean": 0.8296865003198978,
+        "sd": 0.001851977701051551
+      },
+      "precision": {
+        "mean": 0.859749208735213,
+        "sd": 0.0030159229602492663
+      },
+      "sensitivity": {
+        "mean": 0.7886973180076629,
+        "sd": 0.002570193077585975
+      },
+      "specificity": {
+        "mean": 0.8708333333333333,
+        "sd": 0.0032982425770442508
+      },
+      "f1": {
+        "mean": 0.8226871171570901,
+        "sd": 0.0018705351677088772
+      },
+      "roc_auc": {
+        "mean": 0.9073828061040704,
+        "sd": 0.0012766875974530494
+      },
+      "balanced_accuracy": {
+        "mean": 0.829765325670498,
+        "sd": 0.0018530790993562386
+      }
+    },
+    "holdout_test_at_chosen_threshold": {
+      "n_test": 391,
+      "threshold": 0.1991,
+      "accuracy": 0.7416879795396419,
+      "precision": 0.6954732510288066,
+      "sensitivity": 0.8622448979591837,
+      "specificity": 0.6205128205128205,
+      "f1": 0.7699316628701596,
+      "roc_auc": 0.8732862375719519,
+      "balanced_accuracy": 0.7413788592360021,
+      "tn": 121,
+      "fp": 74,
+      "fn": 27,
+      "tp": 169
+    },
+    "holdout_test_at_0.5": {
+      "accuracy": 0.7953964194373402,
+      "precision": 0.8372093023255814,
+      "sensitivity": 0.7346938775510204,
+      "specificity": 0.8564102564102564,
+      "f1": 0.782608695652174,
+      "roc_auc": 0.8732862375719519,
+      "balanced_accuracy": 0.7955520669806384,
+      "tn": 167,
+      "fp": 28,
+      "fn": 52,
+      "tp": 144
+    },
+    "age_rule_baseline_holdout": {
+      "cutoff": 39,
+      "accuracy": 0.8388746803069054,
+      "precision": 1.0,
+      "sensitivity": 0.6785714285714286,
+      "specificity": 1.0,
+      "f1": 0.8085106382978724,
+      "roc_auc": 0.8392857142857143,
+      "balanced_accuracy": 0.8392857142857143,
+      "tn": 195,
+      "fp": 0,
+      "fn": 63,
+      "tp": 133
+    }
+  },
+  "explain": {
+    "type": "logistic_regression_contributions",
+    "transformed_feature_names": [
+      "age",
+      "gender_male",
+      "family_history_yes",
+      "body_weight_underweight",
+      "calcium_intake_low",
+      "vitamin_d_intake_sufficient",
+      "physical_activity_sedentary",
+      "smoking_yes",
+      "prior_fractures_yes"
+    ],
+    "coef": [
+      3.362996875836888,
+      0.06627400284510769,
+      0.036432185430441646,
+      0.14816408084674182,
+      -0.08403083051910148,
+      0.00350696795699276,
+      0.18873560504815076,
+      -0.23903344511389438,
+      0.11828697562178386
+    ],
+    "intercept": 0.7573592149262287,
+    "train_mean_transformed": [
+      -6.3573231416475695e-18,
+      0.5022392834293026,
+      0.4849648112603967,
+      0.47856685860524634,
+      0.5099168266154831,
+      0.5079974408189379,
+      0.47728726807421623,
+      0.5124760076775432,
+      0.5009596928982726
+    ]
+  },
+  "limitations": [
+    "EXPERIMENTAL STUDENT PROJECT. Not clinically validated; not a diagnostic or treatment tool.",
+    "Trained on 1954 rows. Re-train on the full dataset before drawing any conclusion.",
+    "Label provenance is unverified: the file does not say how 'Osteoporosis' was determined (no DEXA/T-score).",
+    "Dataset representativeness for Indian users is unknown (Race/Ethnicity has no Indian category).",
+    "In the training data every record at or above age 39 is positive, so the model score is driven almost entirely by age; this pattern suggests synthetic or rule-generated labels.",
+    "Apart from age, the remaining features show little or no reliable predictive signal in this data (see evaluation report).",
+    "The score is NOT a calibrated probability and must not be read as 'x% chance of osteoporosis'.",
+    "A low score does not mean a person is free of osteoporosis. Only a DEXA scan and a clinician can assess bone health.",
+    "Body weight is derived from BMI (<18.5 = underweight, otherwise normal); the dataset has no 'overweight' category."
+  ]
+}

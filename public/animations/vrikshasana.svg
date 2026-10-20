@@ -1,0 +1,67 @@
+<svg width="200" height="300" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Vrikshasana (Tree Pose) Animation -->
+  <defs>
+    <style>
+      .figure { fill: #059669; stroke: #047857; stroke-width: 2; }
+      .balance { animation: sway 4s ease-in-out infinite; }
+      .hands { animation: prayer 2s ease-in-out infinite; }
+      @keyframes sway {
+        0%, 100% { transform: translateX(0); }
+        50% { transform: translateX(2px); }
+      }
+      @keyframes prayer {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+      }
+    </style>
+  </defs>
+  
+  <!-- Ground line -->
+  <line x1="50" y1="280" x2="150" y2="280" stroke="#8B5CF6" stroke-width="3"/>
+  
+  <!-- Figure in Vrikshasana -->
+  <g class="balance">
+    <!-- Head -->
+    <circle cx="100" cy="50" r="15" class="figure"/>
+    
+    <!-- Torso -->
+    <rect x="90" y="65" width="20" height="60" rx="10" class="figure"/>
+    
+    <!-- Arms in prayer position -->
+    <g class="hands">
+      <rect x="85" y="80" width="8" height="25" rx="4" class="figure" transform="rotate(-15 89 92)"/>
+      <rect x="107" y="80" width="8" height="25" rx="4" class="figure" transform="rotate(15 111 92)"/>
+      <!-- Hands together -->
+      <ellipse cx="100" cy="85" rx="6" ry="8" class="figure"/>
+    </g>
+    
+    <!-- Standing leg (left) -->
+    <rect x="90" y="125" width="12" height="50" rx="6" class="figure"/>
+    
+    <!-- Bent leg (right) - foot on inner thigh -->
+    <rect x="105" y="135" width="12" height="30" rx="6" class="figure" transform="rotate(45 111 150)"/>
+    
+    <!-- Standing foot -->
+    <ellipse cx="96" cy="185" rx="8" ry="4" class="figure"/>
+    
+    <!-- Bent foot (on thigh) -->
+    <ellipse cx="108" cy="145" rx="6" ry="3" class="figure" transform="rotate(45 108 145)"/>
+  </g>
+  
+  <!-- Balance point indicator -->
+  <circle cx="100" cy="30" r="3" fill="#EF4444" opacity="0.8">
+    <animate attributeName="opacity" values="0.8;0.3;0.8" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <text x="100" y="25" text-anchor="middle" font-family="Arial" font-size="10" fill="#EF4444">Focus Point</text>
+  
+  <!-- Instructions -->
+  <text x="100" y="220" text-anchor="middle" font-family="Arial" font-size="12" fill="#374151">
+    Stand on one leg
+  </text>
+  <text x="100" y="235" text-anchor="middle" font-family="Arial" font-size="12" fill="#374151">
+    Foot on inner thigh
+  </text>
+  <text x="100" y="250" text-anchor="middle" font-family="Arial" font-size="12" fill="#374151">
+    Hands in prayer, focus ahead
+  </text>
+</svg>

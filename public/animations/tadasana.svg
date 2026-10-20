@@ -1,0 +1,51 @@
+<svg width="200" height="300" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Tadasana (Mountain Pose) Animation -->
+  <defs>
+    <style>
+      .figure { fill: #4F46E5; stroke: #312E81; stroke-width: 2; }
+      .breathing { animation: breathe 3s ease-in-out infinite; }
+      @keyframes breathe {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.02); }
+      }
+    </style>
+  </defs>
+  
+  <!-- Ground line -->
+  <line x1="50" y1="280" x2="150" y2="280" stroke="#8B5CF6" stroke-width="3"/>
+  
+  <!-- Figure in Tadasana -->
+  <g class="breathing">
+    <!-- Head -->
+    <circle cx="100" cy="50" r="15" class="figure"/>
+    
+    <!-- Torso -->
+    <rect x="90" y="65" width="20" height="60" rx="10" class="figure"/>
+    
+    <!-- Arms (straight down) -->
+    <rect x="75" y="75" width="8" height="40" rx="4" class="figure"/>
+    <rect x="117" y="75" width="8" height="40" rx="4" class="figure"/>
+    
+    <!-- Legs (straight, hip-width apart) -->
+    <rect x="85" y="125" width="12" height="50" rx="6" class="figure"/>
+    <rect x="103" y="125" width="12" height="50" rx="6" class="figure"/>
+    
+    <!-- Feet -->
+    <ellipse cx="91" cy="185" rx="8" ry="4" class="figure"/>
+    <ellipse cx="109" cy="185" rx="8" ry="4" class="figure"/>
+  </g>
+  
+  <!-- Alignment guides -->
+  <line x1="100" y1="35" x2="100" y2="190" stroke="#10B981" stroke-width="1" stroke-dasharray="5,5" opacity="0.7"/>
+  
+  <!-- Instructions -->
+  <text x="100" y="220" text-anchor="middle" font-family="Arial" font-size="12" fill="#374151">
+    Stand tall, feet hip-width apart
+  </text>
+  <text x="100" y="235" text-anchor="middle" font-family="Arial" font-size="12" fill="#374151">
+    Arms at sides, spine straight
+  </text>
+  <text x="100" y="250" text-anchor="middle" font-family="Arial" font-size="12" fill="#374151">
+    Breathe deeply and hold
+  </text>
+</svg>

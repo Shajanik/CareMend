@@ -1,0 +1,75 @@
+<svg width="200" height="300" viewBox="0 0 200 300" xmlns="http://www.w3.html/2000/svg">
+  <!-- Gentle Neck & Shoulder Stretch Animation -->
+  <defs>
+    <style>
+      .figure { fill: #059669; stroke: #047857; stroke-width: 2; }
+      .stretch { animation: stretch 4s ease-in-out infinite; }
+      @keyframes stretch {
+        0%, 100% { transform: rotate(0deg); }
+        25% { transform: rotate(-5deg); }
+        75% { transform: rotate(5deg); }
+      }
+    </style>
+  </defs>
+  
+  <!-- Ground line -->
+  <line x1="30" y1="280" x2="170" y2="280" stroke="#8B5CF6" stroke-width="3"/>
+  
+  <!-- Figure doing gentle stretch -->
+  <g>
+    <!-- Head (gently tilting) -->
+    <g class="stretch" transform-origin="100 70">
+      <circle cx="100" cy="70" r="15" class="figure"/>
+    </g>
+    
+    <!-- Neck -->
+    <rect x="95" y="85" width="10" height="15" rx="5" class="figure"/>
+    
+    <!-- Torso (seated/standing) -->
+    <rect x="85" y="100" width="30" height="60" rx="15" class="figure"/>
+    
+    <!-- Arms (one hand to neck, gentle stretch) -->
+    <rect x="70" y="110" width="8" height="30" rx="4" class="figure" transform="rotate(-20 74 125)"/>
+    <rect x="122" y="110" width="8" height="30" rx="4" class="figure" transform="rotate(45 126 125)"/>
+    
+    <!-- Hand touching neck area -->
+    <circle cx="110" cy="95" r="4" class="figure"/>
+    
+    <!-- Lower body -->
+    <rect x="85" y="160" width="30" height="40" rx="15" class="figure"/>
+    
+    <!-- Legs (seated position) -->
+    <rect x="85" y="200" width="12" height="30" rx="6" class="figure"/>
+    <rect x="103" y="200" width="12" height="30" rx="6" class="figure"/>
+    
+    <!-- Feet -->
+    <ellipse cx="91" cy="235" rx="8" ry="4" class="figure"/>
+    <ellipse cx="109" cy="235" rx="8" ry="4" class="figure"/>
+  </g>
+  
+  <!-- Stretch indication arrows -->
+  <path d="M 85 75 Q 75 65 85 55" stroke="#EF4444" stroke-width="2" fill="none" marker-end="url(#arrowhead)">
+    <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/>
+  </path>
+  <path d="M 115 75 Q 125 65 115 55" stroke="#EF4444" stroke-width="2" fill="none" marker-end="url(#arrowhead)">
+    <animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite"/>
+  </path>
+  
+  <!-- Arrow marker -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#EF4444"/>
+    </marker>
+  </defs>
+  
+  <!-- Instructions -->
+  <text x="100" y="250" text-anchor="middle" font-family="Arial" font-size="12" fill="#374151">
+    Gently tilt head side to side
+  </text>
+  <text x="100" y="265" text-anchor="middle" font-family="Arial" font-size="12" fill="#374151">
+    Hold 5 seconds each side
+  </text>
+  <text x="100" y="280" text-anchor="middle" font-family="Arial" font-size="12" fill="#374151">
+    Roll shoulders backward slowly
+  </text>
+</svg>

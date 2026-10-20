@@ -1,0 +1,92 @@
+<svg width="200" height="300" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Seated Breathing Exercise Animation -->
+  <defs>
+    <style>
+      .figure { fill: #7C3AED; stroke: #5B21B6; stroke-width: 2; }
+      .chair { fill: #8B5CF6; stroke: #7C3AED; stroke-width: 2; }
+      .breathing { animation: breathe 4s ease-in-out infinite; }
+      .chest { animation: chestExpand 4s ease-in-out infinite; }
+      @keyframes breathe {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+      }
+      @keyframes chestExpand {
+        0%, 100% { transform: scaleX(1); }
+        50% { transform: scaleX(1.1); }
+      }
+    </style>
+  </defs>
+  
+  <!-- Ground line -->
+  <line x1="30" y1="280" x2="170" y2="280" stroke="#8B5CF6" stroke-width="3"/>
+  
+  <!-- Chair with back support -->
+  <g class="chair">
+    <!-- Chair seat -->
+    <rect x="70" y="180" width="60" height="8" rx="4"/>
+    <!-- Chair back -->
+    <rect x="125" y="120" width="8" height="68" rx="4"/>
+    <!-- Chair legs -->
+    <rect x="75" y="188" width="6" height="25" rx="3"/>
+    <rect x="119" y="188" width="6" height="25" rx="3"/>
+    <rect x="125" y="188" width="6" height="25" rx="3"/>
+    <rect x="125" y="213" width="6" height="25" rx="3"/>
+  </g>
+  
+  <!-- Figure doing breathing exercise -->
+  <g class="breathing">
+    <!-- Head -->
+    <circle cx="100" cy="100" r="15" class="figure"/>
+    
+    <!-- Torso (expanding with breath) -->
+    <g class="chest" transform-origin="100 140">
+      <rect x="90" y="115" width="20" height="50" rx="10" class="figure"/>
+    </g>
+    
+    <!-- Arms (hands on chest and belly) -->
+    <rect x="75" y="125" width="8" height="25" rx="4" class="figure" transform="rotate(-10 79 137)"/>
+    <rect x="117" y="135" width="8" height="25" rx="4" class="figure" transform="rotate(10 121 147)"/>
+    
+    <!-- Hands positioned for breathing awareness -->
+    <circle cx="85" cy="130" r="4" class="figure"/>
+    <circle cx="115" cy="150" r="4" class="figure"/>
+    
+    <!-- Thighs -->
+    <rect x="85" y="165" width="30" height="12" rx="6" class="figure"/>
+    
+    <!-- Shins -->
+    <rect x="85" y="177" width="10" height="25" rx="5" class="figure"/>
+    <rect x="105" y="177" width="10" height="25" rx="5" class="figure"/>
+    
+    <!-- Feet -->
+    <ellipse cx="90" cy="210" rx="8" ry="4" class="figure"/>
+    <ellipse cx="110" cy="210" rx="8" ry="4" class="figure"/>
+  </g>
+  
+  <!-- Breathing visualization -->
+  <circle cx="100" cy="140" r="25" fill="none" stroke="#10B981" stroke-width="2" opacity="0.6">
+    <animate attributeName="r" values="25;35;25" dur="4s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.6;0.2;0.6" dur="4s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Breath flow indicators -->
+  <text x="100" y="80" text-anchor="middle" font-family="Arial" font-size="10" fill="#10B981">
+    <animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite"/>
+    Inhale
+  </text>
+  <text x="100" y="80" text-anchor="middle" font-family="Arial" font-size="10" fill="#EF4444">
+    <animate attributeName="opacity" values="0;1;0" dur="2s" begin="2s" repeatCount="indefinite"/>
+    Exhale
+  </text>
+  
+  <!-- Instructions -->
+  <text x="100" y="240" text-anchor="middle" font-family="Arial" font-size="12" fill="#374151">
+    Sit with back supported
+  </text>
+  <text x="100" y="255" text-anchor="middle" font-family="Arial" font-size="12" fill="#374151">
+    Hands on chest and belly
+  </text>
+  <text x="100" y="270" text-anchor="middle" font-family="Arial" font-size="12" fill="#374151">
+    Breathe slowly and deeply
+  </text>
+</svg>

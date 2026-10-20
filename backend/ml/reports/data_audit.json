@@ -1,0 +1,414 @@
+{
+  "file": "data/osteoporosis.csv",
+  "sha256": "8ccd5b3f6de51d054fea87af8946e1891651ee1edc997c2dc370f42e780209ac",
+  "n_rows": 1958,
+  "n_cols": 16,
+  "columns": {
+    "Id": "int64",
+    "Age": "int64",
+    "Gender": "str",
+    "Hormonal Changes": "str",
+    "Family History": "str",
+    "Race/Ethnicity": "str",
+    "Body Weight": "str",
+    "Calcium Intake": "str",
+    "Vitamin D Intake": "str",
+    "Physical Activity": "str",
+    "Smoking": "str",
+    "Alcohol Consumption": "str",
+    "Medical Conditions": "str",
+    "Medications": "str",
+    "Prior Fractures": "str",
+    "Osteoporosis": "int64"
+  },
+  "target_counts": {
+    "0": 979,
+    "1": 979
+  },
+  "target_values_ok": true,
+  "positive_rate": 0.5,
+  "missing_pct": {
+    "Id": 0.0,
+    "Age": 0.0,
+    "Gender": 0.0,
+    "Hormonal Changes": 0.0,
+    "Family History": 0.0,
+    "Race/Ethnicity": 0.0,
+    "Body Weight": 0.0,
+    "Calcium Intake": 0.0,
+    "Vitamin D Intake": 0.0,
+    "Physical Activity": 0.0,
+    "Smoking": 0.0,
+    "Alcohol Consumption": 0.0,
+    "Medical Conditions": 0.0,
+    "Medications": 0.0,
+    "Prior Fractures": 0.0,
+    "Osteoporosis": 0.0
+  },
+  "literal_none_pct": {
+    "Id": 0.0,
+    "Age": 0.0,
+    "Gender": 0.0,
+    "Hormonal Changes": 0.0,
+    "Family History": 0.0,
+    "Race/Ethnicity": 0.0,
+    "Body Weight": 0.0,
+    "Calcium Intake": 0.0,
+    "Vitamin D Intake": 0.0,
+    "Physical Activity": 0.0,
+    "Smoking": 0.0,
+    "Alcohol Consumption": 50.5,
+    "Medical Conditions": 33.0,
+    "Medications": 50.3,
+    "Prior Fractures": 0.0,
+    "Osteoporosis": 0.0
+  },
+  "unique_non_missing": {
+    "Id": "1958 distinct",
+    "Age": "73 distinct",
+    "Gender": [
+      "Female",
+      "Male"
+    ],
+    "Hormonal Changes": [
+      "Normal",
+      "Postmenopausal"
+    ],
+    "Family History": [
+      "No",
+      "Yes"
+    ],
+    "Race/Ethnicity": [
+      "African American",
+      "Asian",
+      "Caucasian"
+    ],
+    "Body Weight": [
+      "Normal",
+      "Underweight"
+    ],
+    "Calcium Intake": [
+      "Adequate",
+      "Low"
+    ],
+    "Vitamin D Intake": [
+      "Insufficient",
+      "Sufficient"
+    ],
+    "Physical Activity": [
+      "Active",
+      "Sedentary"
+    ],
+    "Smoking": [
+      "No",
+      "Yes"
+    ],
+    "Alcohol Consumption": [
+      "Moderate",
+      "None"
+    ],
+    "Medical Conditions": [
+      "Hyperthyroidism",
+      "None",
+      "Rheumatoid Arthritis"
+    ],
+    "Medications": [
+      "Corticosteroids",
+      "None"
+    ],
+    "Prior Fractures": [
+      "No",
+      "Yes"
+    ],
+    "Osteoporosis": [
+      "0",
+      "1"
+    ]
+  },
+  "single_valued_non_missing": [],
+  "duplicate_rows_full": 0,
+  "duplicate_rows_excluding_id": 4,
+  "id_unique": true,
+  "inconsistent_category_spelling": {},
+  "age_summary": {
+    "count": 1958.0,
+    "mean": 39.1,
+    "std": 21.36,
+    "min": 18.0,
+    "25%": 21.0,
+    "50%": 32.0,
+    "75%": 53.0,
+    "max": 90.0
+  },
+  "age_band_table": {
+    "<30": {
+      "n": 951,
+      "positives": 157,
+      "rate": 0.165
+    },
+    "30-39": {
+      "n": 314,
+      "positives": 129,
+      "rate": 0.411
+    },
+    "40-49": {
+      "n": 138,
+      "positives": 138,
+      "rate": 1.0
+    },
+    "50-59": {
+      "n": 140,
+      "positives": 140,
+      "rate": 1.0
+    },
+    "60-69": {
+      "n": 135,
+      "positives": 135,
+      "rate": 1.0
+    },
+    "70+": {
+      "n": 280,
+      "positives": 280,
+      "rate": 1.0
+    }
+  },
+  "age_all_positive_from": 39,
+  "n_rows_at_or_above_cutoff": 702,
+  "n_negatives_at_or_above_cutoff": 0,
+  "n_negatives_below_cutoff": 979,
+  "n_positives_below_cutoff": 277,
+  "oldest_negative": 38,
+  "youngest_positive": 18,
+  "best_age_threshold_rule": {
+    "threshold": 36,
+    "apparent_accuracy": 0.86
+  },
+  "age_label_point_biserial": 0.691,
+  "age_pattern_flag": true,
+  "gender_by_hormonal": {
+    "Female": {
+      "Normal": 475,
+      "Postmenopausal": 491
+    },
+    "Male": {
+      "Normal": 506,
+      "Postmenopausal": 486
+    }
+  },
+  "males_labelled_postmenopausal": 486,
+  "n_males": 992,
+  "association_with_target": {
+    "Gender": {
+      "cramers_v": 0.012,
+      "p_value": 0.619,
+      "positive_rate_by_value": {
+        "Female": {
+          "n": 966,
+          "rate": 0.494
+        },
+        "Male": {
+          "n": 992,
+          "rate": 0.506
+        }
+      }
+    },
+    "Hormonal Changes": {
+      "cramers_v": 0.015,
+      "p_value": 0.5269,
+      "positive_rate_by_value": {
+        "Normal": {
+          "n": 981,
+          "rate": 0.492
+        },
+        "Postmenopausal": {
+          "n": 977,
+          "rate": 0.508
+        }
+      }
+    },
+    "Family History": {
+      "cramers_v": 0.002,
+      "p_value": 0.9639,
+      "positive_rate_by_value": {
+        "No": {
+          "n": 998,
+          "rate": 0.501
+        },
+        "Yes": {
+          "n": 960,
+          "rate": 0.499
+        }
+      }
+    },
+    "Race/Ethnicity": {
+      "cramers_v": 0.008,
+      "p_value": 0.946,
+      "positive_rate_by_value": {
+        "African American": {
+          "n": 681,
+          "rate": 0.505
+        },
+        "Asian": {
+          "n": 631,
+          "rate": 0.498
+        },
+        "Caucasian": {
+          "n": 646,
+          "rate": 0.497
+        }
+      }
+    },
+    "Body Weight": {
+      "cramers_v": 0.036,
+      "p_value": 0.1239,
+      "positive_rate_by_value": {
+        "Normal": {
+          "n": 1027,
+          "rate": 0.483
+        },
+        "Underweight": {
+          "n": 931,
+          "rate": 0.519
+        }
+      }
+    },
+    "Calcium Intake": {
+      "cramers_v": 0.004,
+      "p_value": 0.8921,
+      "positive_rate_by_value": {
+        "Adequate": {
+          "n": 954,
+          "rate": 0.502
+        },
+        "Low": {
+          "n": 1004,
+          "rate": 0.498
+        }
+      }
+    },
+    "Vitamin D Intake": {
+      "cramers_v": 0.017,
+      "p_value": 0.4693,
+      "positive_rate_by_value": {
+        "Insufficient": {
+          "n": 947,
+          "rate": 0.491
+        },
+        "Sufficient": {
+          "n": 1011,
+          "rate": 0.508
+        }
+      }
+    },
+    "Physical Activity": {
+      "cramers_v": 0.019,
+      "p_value": 0.4155,
+      "positive_rate_by_value": {
+        "Active": {
+          "n": 1021,
+          "rate": 0.491
+        },
+        "Sedentary": {
+          "n": 937,
+          "rate": 0.51
+        }
+      }
+    },
+    "Smoking": {
+      "cramers_v": 0.016,
+      "p_value": 0.4978,
+      "positive_rate_by_value": {
+        "No": {
+          "n": 976,
+          "rate": 0.508
+        },
+        "Yes": {
+          "n": 982,
+          "rate": 0.492
+        }
+      }
+    },
+    "Alcohol Consumption": {
+      "cramers_v": 0.002,
+      "p_value": 0.9639,
+      "positive_rate_by_value": {
+        "Moderate": {
+          "n": 970,
+          "rate": 0.501
+        },
+        "None": {
+          "n": 988,
+          "rate": 0.499
+        }
+      }
+    },
+    "Medical Conditions": {
+      "cramers_v": 0.012,
+      "p_value": 0.8626,
+      "positive_rate_by_value": {
+        "Hyperthyroidism": {
+          "n": 678,
+          "rate": 0.506
+        },
+        "None": {
+          "n": 647,
+          "rate": 0.491
+        },
+        "Rheumatoid Arthritis": {
+          "n": 633,
+          "rate": 0.502
+        }
+      }
+    },
+    "Medications": {
+      "cramers_v": 0.034,
+      "p_value": 0.1481,
+      "positive_rate_by_value": {
+        "Corticosteroids": {
+          "n": 973,
+          "rate": 0.517
+        },
+        "None": {
+          "n": 985,
+          "rate": 0.483
+        }
+      }
+    },
+    "Prior Fractures": {
+      "cramers_v": 0.015,
+      "p_value": 0.5269,
+      "positive_rate_by_value": {
+        "No": {
+          "n": 975,
+          "rate": 0.492
+        },
+        "Yes": {
+          "n": 983,
+          "rate": 0.508
+        }
+      }
+    }
+  },
+  "id_vs_target_corr": -0.05,
+  "none_answers_vs_target": {
+    "Alcohol Consumption": {
+      "none_n": 988,
+      "positive_rate_when_none": 0.499,
+      "positive_rate_otherwise": 0.501,
+      "fisher_p": 0.9639
+    },
+    "Medications": {
+      "none_n": 985,
+      "positive_rate_when_none": 0.483,
+      "positive_rate_otherwise": 0.517,
+      "fisher_p": 0.1481
+    },
+    "Medical Conditions": {
+      "none_n": 647,
+      "positive_rate_when_none": 0.491,
+      "positive_rate_otherwise": 0.504,
+      "fisher_p": 0.6309
+    }
+  },
+  "notes_label_provenance": "The CSV carries no documentation of how Osteoporosis was determined (no DEXA T-scores, no clinician, no site, no date). Kaggle was not reachable from the build environment, so the dataset page could not be re-checked; per the project brief the label-generation process is unverified and the Indian representativeness is unknown."
+}

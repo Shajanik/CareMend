@@ -1,0 +1,68 @@
+<svg width="200" height="300" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Chair-Supported Pose Animation -->
+  <defs>
+    <style>
+      .figure { fill: #0891B2; stroke: #0E7490; stroke-width: 2; }
+      .chair { fill: #8B5CF6; stroke: #7C3AED; stroke-width: 2; }
+      .posture { animation: posture 4s ease-in-out infinite; }
+      @keyframes posture {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-2px); }
+      }
+    </style>
+  </defs>
+  
+  <!-- Ground line -->
+  <line x1="30" y1="280" x2="170" y2="280" stroke="#8B5CF6" stroke-width="3"/>
+  
+  <!-- Chair -->
+  <g class="chair">
+    <!-- Chair seat -->
+    <rect x="70" y="180" width="60" height="8" rx="4"/>
+    <!-- Chair back -->
+    <rect x="125" y="120" width="8" height="68" rx="4"/>
+    <!-- Chair legs -->
+    <rect x="75" y="188" width="6" height="25" rx="3"/>
+    <rect x="119" y="188" width="6" height="25" rx="3"/>
+    <rect x="125" y="188" width="6" height="25" rx="3"/>
+    <rect x="125" y="213" width="6" height="25" rx="3"/>
+  </g>
+  
+  <!-- Figure sitting in chair -->
+  <g class="posture">
+    <!-- Head -->
+    <circle cx="100" cy="100" r="15" class="figure"/>
+    
+    <!-- Torso (upright) -->
+    <rect x="90" y="115" width="20" height="50" rx="10" class="figure"/>
+    
+    <!-- Arms (relaxed on armrests or lap) -->
+    <rect x="75" y="130" width="8" height="30" rx="4" class="figure"/>
+    <rect x="117" y="130" width="8" height="30" rx="4" class="figure"/>
+    
+    <!-- Thighs (on chair) -->
+    <rect x="85" y="165" width="30" height="12" rx="6" class="figure"/>
+    
+    <!-- Shins (vertical) -->
+    <rect x="85" y="177" width="10" height="25" rx="5" class="figure"/>
+    <rect x="105" y="177" width="10" height="25" rx="5" class="figure"/>
+    
+    <!-- Feet (flat on ground) -->
+    <ellipse cx="90" cy="210" rx="8" ry="4" class="figure"/>
+    <ellipse cx="110" cy="210" rx="8" ry="4" class="figure"/>
+  </g>
+  
+  <!-- Posture alignment guide -->
+  <line x1="100" y1="85" x2="100" y2="180" stroke="#10B981" stroke-width="1" stroke-dasharray="5,5" opacity="0.7"/>
+  
+  <!-- Instructions -->
+  <text x="100" y="240" text-anchor="middle" font-family="Arial" font-size="12" fill="#374151">
+    Sit tall in sturdy chair
+  </text>
+  <text x="100" y="255" text-anchor="middle" font-family="Arial" font-size="12" fill="#374151">
+    Feet flat on floor
+  </text>
+  <text x="100" y="270" text-anchor="middle" font-family="Arial" font-size="12" fill="#374151">
+    Engage core, lengthen spine
+  </text>
+</svg>

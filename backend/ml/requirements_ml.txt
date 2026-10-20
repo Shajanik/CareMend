@@ -1,0 +1,8 @@
+# Training / evaluation / test dependencies (NOT needed in production).
+# Install:  pip install -r backend/requirements.txt -r backend/ml/requirements_ml.txt
+# scikit-learn is pinned in backend/requirements.txt: train and serve with the SAME version,
+# because the saved pipeline is a pickle.
+scipy>=1.11
+matplotlib>=3.7
+xgboost>=2.0        # optional: used only in the model comparison, never at inference
+pytest>=8.0

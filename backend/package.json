@@ -1,0 +1,18 @@
+{
+  "name": "caremend-gemini-bridge",
+  "version": "1.0.0",
+  "description": "Bridge between Python Flask and Node.js Gemini service",
+  "type": "module",
+  "main": "services/gemini_bridge.js",
+  "scripts": {
+    "start": "node services/gemini_bridge.js",
+    "test": "node services/geminiService.js"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.11.0",
+    "dotenv": "^17.4.2"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
