@@ -5,7 +5,12 @@ import { HealthData, AssessmentResult } from '../types';
 import { buildAssessmentPayload, FIELD_LABELS, calculateBMI } from '../utils/assessmentPayload';
 import { motion, AnimatePresence } from 'framer-motion';
 import { getStoredUser } from '../config/authService';
-import { API_CONFIG } from '../config/api';
+
+// ── API base URL ──────────────────────────────────────────────────────────────
+// Production (Vercel): VITE_API_URL = https://caremend-u0ua.onrender.com
+// Local dev: leave VITE_API_URL empty and the Vite proxy handles /api/...
+// The trailing slash is stripped so we never produce "//api/...".
+const API_BASE: string = ((import.meta as any).env?.VITE_API_URL || '').replace(/\/+$/, '');
 
 // ── Theme ─────────────────────────────────────────────────────────────────────
 const M  = '#a32626';
@@ -105,7 +110,7 @@ const RiskAssessment: React.FC<Props> = ({ onShowError, onComplete }) => {
       return;
     }
     setErrors([]);
-    
+
     if (step < total) {
       setStep(s => s + 1);
     } else {
@@ -136,17 +141,20 @@ const RiskAssessment: React.FC<Props> = ({ onShowError, onComplete }) => {
 
       const payload = buildAssessmentPayload(data, user.id);
 
-      // Use relative URL for API calls (Vite dev server will proxy to localhost:5000)
+      // Full backend URL in production; relative URL in local dev (Vite proxy).
+      const url = `${API_BASE}/api/assessment/submit`;
+
       let response: Response;
       try {
-        response = await fetch(`/api/assessment/submit`, {
+        response = await fetch(url, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload),
         });
-      } catch {
+      } catch (e) {
         // Network failure: report it. No locally-invented result is ever shown.
-        setServerError(['Could not reach the server. Please check your connection and try again.']);
+        console.error('Assessment request failed:', url, e);
+        setServerError(['Could not reach the server. It may be waking up, so please wait a moment and try again.']);
         return;
       }
 
