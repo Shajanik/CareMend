@@ -1,6 +1,7 @@
+
 import React, { useState, useEffect } from 'react';
 import { HealthData, Doctor } from './types';
-import SplashScreen from './views/SplashScreen';
+import SplashScreen from './SplashScreen';
 import RiskIntro from './views/RiskIntro';
 import RiskAssessment from './views/RiskAssessment';
 import RiskResult from './views/RiskResult';
@@ -23,8 +24,7 @@ import ErrorBoundary from './components/ErrorBoundary';
 import PersonalizedExerciseCoach from './views/PersonalizedExerciseCoach';
 import CareConnect from './views/CareConnect';
 
-// Define simplified stage types without auth
-type AppStage = 
+type AppStage =
   | 'SPLASH'
   | 'RISK_INTRO'
   | 'RISK_ASSESSMENT'
@@ -58,44 +58,37 @@ const App: React.FC = () => {
   const [selectedCommunity, setSelectedCommunity] = useState<'Osteoporosis' | null>(null);
   const [notification, setNotification] = useState<string | null>(null);
 
-  // Check if assessment already exists when app loads
   useEffect(() => {
-    console.log('🔄 App initializing - checking for existing assessment');
-    // On every reload, clear assessment data to start fresh (temporary storage only)
+    console.log('App initializing - clearing temporary assessment data');
     localStorage.removeItem('assessmentData');
     localStorage.removeItem('riskCategory');
-    console.log('🧹 Cleared temporary assessment data for fresh start on page reload');
   }, []);
 
-  // Auto-transition from splash - always go to HOME (fresh start each reload)
   useEffect(() => {
-    if (stage === 'SPLASH') {
-      const timer = setTimeout(() => {
-        // Create a demo user if one doesn't exist
-        let user = localStorage.getItem('caremend_user');
-        if (!user) {
-          const demoUser = {
-            id: Math.floor(Math.random() * 1000000) + 1,
-            full_name: 'Guest User',
-            email: `guest_${Date.now()}@caremend.local`,
-            username: `guest_${Date.now()}`,
-          };
-          localStorage.setItem('caremend_user', JSON.stringify(demoUser));
-          localStorage.setItem('caremend_token', 'demo-token-' + Date.now());
-          console.log('✅ Created demo user:', demoUser);
-        }
-        
-        // Always go to HOME - assessment data is cleared on reload
-        console.log('🏠 Going to HOME (fresh start)');
-        setStage('HOME');
-      }, 4000);
-      return () => clearTimeout(timer);
-    }
+    if (stage !== 'SPLASH') return;
+
+    const timer = setTimeout(() => {
+      let user = localStorage.getItem('caremend_user');
+
+      if (!user) {
+        const demoUser = {
+          id: Math.floor(Math.random() * 1000000) + 1,
+          full_name: 'Guest User',
+          email: `guest_${Date.now()}@caremend.local`,
+          username: `guest_${Date.now()}`,
+        };
+
+        localStorage.setItem('caremend_user', JSON.stringify(demoUser));
+        localStorage.setItem('caremend_token', 'demo-token-' + Date.now());
+      }
+
+      setStage('HOME');
+    }, 4000);
+
+    return () => clearTimeout(timer);
   }, [stage]);
 
-  // Scroll to top on stage transitions
   useEffect(() => {
-    console.log('App stage changed to:', stage);
     window.scrollTo(0, 0);
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
@@ -113,10 +106,9 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen w-full flex flex-col font-sans text-[#333] overflow-x-hidden bg-white">
-      {/* Error Toast */}
       <AnimatePresence>
         {errorMsg && (
-          <motion.div 
+          <motion.div
             initial={{ y: -100, x: '-50%', opacity: 0 }}
             animate={{ y: 0, x: '-50%', opacity: 1 }}
             exit={{ y: -100, x: '-50%', opacity: 0 }}
@@ -127,10 +119,9 @@ const App: React.FC = () => {
         )}
       </AnimatePresence>
 
-      {/* Notification Toast */}
       <AnimatePresence>
         {notification && (
-          <motion.div 
+          <motion.div
             initial={{ y: -100, x: '-50%', opacity: 0 }}
             animate={{ y: 0, x: '-50%', opacity: 1 }}
             exit={{ y: -100, x: '-50%', opacity: 0 }}
@@ -153,7 +144,7 @@ const App: React.FC = () => {
             className="w-full"
           >
             {stage === 'SPLASH' && <SplashScreen />}
-            
+
             {stage === 'HOME' && (
               <HomePage
                 onStartAssessment={() => setStage('RISK_INTRO')}
@@ -176,13 +167,12 @@ const App: React.FC = () => {
             )}
 
             {stage === 'RISK_ASSESSMENT' && (
-              <RiskAssessment 
-                onShowError={showError} 
+              <RiskAssessment
+                onShowError={showError}
                 onComplete={(data) => {
-                  console.log('Assessment completed, received data:', data);
                   setHealthData(data);
                   setStage('RISK_RESULT');
-                }} 
+                }}
               />
             )}
 
@@ -190,22 +180,25 @@ const App: React.FC = () => {
               <div>
                 {healthData ? (
                   <ErrorBoundary>
-                    <RiskResult 
-                      data={healthData} 
+                    <RiskResult
+                      data={healthData}
                       onRetake={() => setStage('RISK_ASSESSMENT')}
                       onProceed={(cat) => {
-                        console.log('🎯 Risk result completed, category:', cat);
                         setRiskCategory(cat);
                         setStage('DASHBOARD');
-                      }} 
+                      }}
                     />
                   </ErrorBoundary>
                 ) : (
                   <div className="min-h-screen flex items-center justify-center bg-gray-50">
                     <div className="text-center">
-                      <h2 className="text-2xl font-bold text-gray-900 mb-4">No Health Data</h2>
-                      <p className="text-gray-600">Health data is missing. Please complete the assessment again.</p>
-                      <button 
+                      <h2 className="text-2xl font-bold text-gray-900 mb-4">
+                        No Health Data
+                      </h2>
+                      <p className="text-gray-600">
+                        Health data is missing. Please complete the assessment again.
+                      </p>
+                      <button
                         onClick={() => setStage('RISK_ASSESSMENT')}
                         className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
                       >
@@ -218,7 +211,7 @@ const App: React.FC = () => {
             )}
 
             {stage === 'DASHBOARD' && (
-              <Dashboard 
+              <Dashboard
                 onSelectDoctor={() => setStage('DOC_CONNECT_DISEASE')}
                 onSelectCommunity={() => setStage('COMMUNITY_SELECT')}
                 onSelectSelfcare={() => setStage('SELFCARE_TOOLS')}
@@ -233,7 +226,7 @@ const App: React.FC = () => {
             )}
 
             {stage === 'DOC_CONNECT_DISEASE' && (
-              <DocDiseaseSelect 
+              <DocDiseaseSelect
                 onBack={() => setStage('DASHBOARD')}
                 onSelect={(d) => {
                   setSelectedDisease(d);
@@ -243,7 +236,7 @@ const App: React.FC = () => {
             )}
 
             {stage === 'DOC_CONNECT_LIST' && selectedDisease && (
-              <DocList 
+              <DocList
                 disease={selectedDisease}
                 onBack={() => setStage('DOC_CONNECT_DISEASE')}
                 onSelectDoc={(doc) => {
@@ -254,7 +247,7 @@ const App: React.FC = () => {
             )}
 
             {stage === 'DOC_CONNECT_DETAIL' && selectedDoc && (
-              <DocDetail 
+              <DocDetail
                 doc={selectedDoc}
                 onBack={() => setStage('DOC_CONNECT_LIST')}
                 onBook={() => setStage('DOC_CONNECT_CALENDAR')}
@@ -262,17 +255,19 @@ const App: React.FC = () => {
             )}
 
             {stage === 'DOC_CONNECT_CALENDAR' && selectedDoc && (
-              <DocCalendar 
+              <DocCalendar
                 onBack={() => setStage('DOC_CONNECT_DETAIL')}
                 onConfirmed={() => {
                   setStage('DASHBOARD');
-                  showNotification("Your appointment has been booked successfully..be in time to visit the doctor");
+                  showNotification(
+                    'Your appointment has been booked successfully. Be in time to visit the doctor.'
+                  );
                 }}
               />
             )}
 
             {stage === 'COMMUNITY_SELECT' && (
-              <CommunitySelect 
+              <CommunitySelect
                 onBack={() => setStage('DASHBOARD')}
                 onSelect={(c) => {
                   setSelectedCommunity(c);
@@ -282,29 +277,43 @@ const App: React.FC = () => {
             )}
 
             {stage === 'COMMUNITY_FORUM' && selectedCommunity && (
-              <CommunityForum 
+              <CommunityForum
                 disease={selectedCommunity}
                 onBack={() => setStage('COMMUNITY_SELECT')}
               />
             )}
 
             {stage === 'SELFCARE_TOOLS' && (
-              <SelfcareTools 
+              <SelfcareTools
                 onBack={() => setStage('DASHBOARD')}
                 onSelectCategory={(cat) => setStage(cat as AppStage)}
               />
             )}
 
-            {stage === 'MEDITATION' && <MeditationView riskCategory={riskCategory} onBack={() => setStage('SELFCARE_TOOLS')} />}
-            
+            {stage === 'MEDITATION' && (
+              <MeditationView
+                riskCategory={riskCategory}
+                onBack={() => setStage('SELFCARE_TOOLS')}
+              />
+            )}
+
             {stage === 'WALKING' && (
               <ErrorBoundary>
-                <WalkingTracker riskCategory={riskCategory} onBack={() => setStage('SELFCARE_TOOLS')} />
+                <WalkingTracker
+                  riskCategory={riskCategory}
+                  onBack={() => setStage('SELFCARE_TOOLS')}
+                />
               </ErrorBoundary>
             )}
-            
-            {stage === 'EXERCISE_COACH' && <PersonalizedExerciseCoach healthData={healthData} riskCategory={riskCategory} onBack={() => setStage('SELFCARE_TOOLS')} />}
-            
+
+            {stage === 'EXERCISE_COACH' && (
+              <PersonalizedExerciseCoach
+                healthData={healthData}
+                riskCategory={riskCategory}
+                onBack={() => setStage('SELFCARE_TOOLS')}
+              />
+            )}
+
             {stage === 'CARECONNECT' && (
               <CareConnect
                 onBack={() => setStage('DASHBOARD')}
@@ -314,7 +323,7 @@ const App: React.FC = () => {
                 }}
               />
             )}
-            
+
             {stage === 'CARECONNECT_BOOKING' && selectedDoc && (
               <DocDetail
                 doc={selectedDoc}
@@ -322,23 +331,29 @@ const App: React.FC = () => {
                 onBook={() => setStage('DOC_CONNECT_CALENDAR')}
               />
             )}
-            
-            {stage === 'HIGHLY_RECOMMENDED' && <HighlyRecommendedView riskCategory={riskCategory} onBack={() => setStage('SELFCARE_TOOLS')} />}
+
+            {stage === 'HIGHLY_RECOMMENDED' && (
+              <HighlyRecommendedView
+                riskCategory={riskCategory}
+                onBack={() => setStage('SELFCARE_TOOLS')}
+              />
+            )}
 
             {stage === 'NUTRITION_PLAN' && (
-              <NutritionPlanView 
+              <NutritionPlanView
                 healthData={healthData}
                 riskCategory={riskCategory}
                 onBack={() => setStage('DASHBOARD')}
               />
             )}
 
-            {/* Contact page - redirect to dashboard */}
             {stage === 'CONTACT' && (
               <div className="min-h-screen flex items-center justify-center">
                 <div className="text-center">
                   <h1 className="text-2xl font-bold mb-4">Coming Soon</h1>
-                  <p className="text-gray-600 mb-6">Contact page is under development</p>
+                  <p className="text-gray-600 mb-6">
+                    Contact page is under development
+                  </p>
                   <button
                     onClick={() => setStage('DASHBOARD')}
                     className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
