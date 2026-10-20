@@ -1,7 +1,6 @@
-
 import React, { useState, useEffect } from 'react';
 import { HealthData, Doctor } from './types';
-import SplashScreen from './SplashScreen';
+import SplashScreen from './views/SplashScreen';
 import RiskIntro from './views/RiskIntro';
 import RiskAssessment from './views/RiskAssessment';
 import RiskResult from './views/RiskResult';
